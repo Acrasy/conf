@@ -19,12 +19,14 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+#bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec zsh
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher):
+#install dmenu && j4-dmenu-desktop
 bindsym $mod+space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -l 5 -i"
 
 # Use cursor keys for navigating on Workspace:
@@ -55,7 +57,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+q layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+t focus mode_toggle
