@@ -1,0 +1,27 @@
+#My attempt of a secure sshd config
+#stored at github.com/Acrasy
+
+#changing of the default port to some arbitrary number
+#for convenience sake also changed in the ssh_config on the host
+
+Port 660                     #Mac Server Administration port, no macs are needed
+AddressFamily inet           #specifies IPv4
+ListenAddress 192.168.0.50	 #set static ip Address
+
+
+#For disabling password login completely both of the following options are needed
+#challengeRespAuth == Input via keyboard
+#passwdAuth == also providing password via other means (scripting)
+
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+
+#
+
+#Disable all kinds of forwarding, since this will not be needed
+
+AllowTcpForwarding no
+AllowAgentForwarding no
+X11Forwarding no
+GatewayPorts no
+PermitTunnel no
