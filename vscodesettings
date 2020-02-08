@@ -1,0 +1,30 @@
+ {
+        "workbench.settings.editor": "json",
+    "terminal.explorerKind": "external",
+    "terminal.external.linuxExec": "zsh",
+    "workbench.colorTheme": "One Dark Pro",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "editor.accessibilitySupport": "off",
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingOvertype": "never",
+    "editor.autoClosingQuotes": "never",
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "workbench.enableExperiments": false,
+    "editor.insertSpaces": false,
+    "editor.autoSurround": "never",
+    "git.scanRepositories": [
+        "/home/sai/DATA/gitRepos"
+    ],
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": false
+    }
+
+Extensions:
+  Docker
+  One Dark Pro
+  Python
+  Remote - SSH
+  VIM
