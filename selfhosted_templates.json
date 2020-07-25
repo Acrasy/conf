@@ -1,0 +1,691 @@
+[
+  {
+    "type": 1,
+    "title": "Heimdall",
+    "name": "heimdall",
+    "description": "Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/heimdall-icon.png",
+    "image": "linuxserver/heimdall:latest",
+    "categories": [
+      "Tools",
+      "Web",
+      "Other"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "80/tcp",
+      "443/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Heimdall"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Let's Encrypt",
+    "name": "letsencrypt",
+    "description": "This container sets up an Nginx webserver and reverse proxy with php support and a built-in letsencrypt client that automates free SSL server certificate generation and renewal processes. It also contains fail2ban for intrusion prevention.\r\n  \r\n  Before running this container, make sure that the url and subdomains are properly forwarded to this container's host.\r\n  \r\n  - Port 443 on the internet side of the router should be forwarded to this container's port 443.\r\n  - If you need a dynamic dns provider, you can use the free provider duckdns.org where the url will be yoursubdomain.duckdns.org and the subdomains    can be www,ftp,cloud\r\n  - The container detects changes to url and subdomains, revokes existing certs and generates new ones during start. \r\n  - It also detects changes to the DHLEVEL parameter and replaces the dhparams file.\r\n  \r\n  - If you'd like to password protect your sites, you can use htpasswd. Run the following command on your host to generate the htpasswd file docker exec -it letsencrypt htpasswd -c /config/nginx/.htpasswd &lt;username&gt;",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/letsencrypt.png",
+    "image": "linuxserver/letsencrypt:latest",
+    "categories": [
+      "Tools",
+      "Web"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "80/tcp",
+      "443/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/LetsEncrypt"
+      }
+    ],
+    "env": [
+      {
+        "name": "EMAIL",
+        "label": "EMAIL",
+        "set": "-Xms256m -Xmx512m"
+      },
+      {
+        "name": "URL",
+        "label": "URL",
+        "set": "-Xms256m -Xmx512m"
+      },
+      {
+        "name": "SUBDOMAINS",
+        "label": "SUBDOMAINS",
+        "set": "www,"
+      },
+      {
+        "name": "ONLY_SUBDOMAINS",
+        "label": "ONLY_SUBDOMAINS",
+        "set": "false"
+      },
+      {
+        "name": "DHLEVEL",
+        "label": "DHLEVEL",
+        "set": "2048"
+      },
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      },
+      {
+        "name": "VALIDATION",
+        "label": "VALIDATION",
+        "set": "http"
+      },
+      {
+        "name": "DNSPLUGIN",
+        "label": "DNSPLUGIN",
+        "set": "http"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "MariaDB",
+    "name": "mariadb",
+    "description": "An Enhanced drop in replacement for Mysql",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/mariadb-icon.png",
+    "image": "linuxserver/mariadb:latest",
+    "categories": [
+      "Other",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "3306:3306/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Mariadb"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      },
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "label": "MYSQL_ROOT_PASSWORD",
+        "set": ""
+      }
+    ]
+  },
+  {
+    "type": 3,
+    "title": "Nextcloud",
+    "name": "nextcloud",
+    "description": "Where are your photos and documents? With Nextcloud you pick a server of your choice, at home, in a data center or at a provider. And that is where your files will be. Nextcloud runs on that server, protecting your data and giving you access from your desktop or mobile devices.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/nextcloud-icon.png",
+    "categories": [
+      "Cloud",
+      "Productivity",
+      "Tools",
+      "Other",
+      "Web"
+    ],
+    "note": "The database user is nextcloud and the database is nextcloud_db. The host of the database will be located at the bottom of the DB conotainer in portainer.",
+    "platform": "linux",
+    "repository": {
+      "url": "https://github.com/SelfhostedPro/selfhosted_templates",
+      "stackfile": "Template/Stack/nextcloud.yml"
+    },
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      },
+      {
+        "name": "TZ",
+        "label": "TZ"
+      },
+      {
+        "name": "DATABASE_PASSWORD",
+        "label": "DATABASE_PASSWORD"
+      },
+      {
+        "name": "MYSQL_ROOT_PASSWORD",
+        "label": "MYSQL_ROOT_PASSWORD"
+      },
+      {
+        "name": "PORT",
+        "label": "PORT"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Nginx",
+    "name": "nginx",
+    "description": "Nginx is a web server with a strong focus on high concurrency, performance and low memory usage. It can also act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/nginx-icon.png",
+    "image": "linuxserver/nginx:latest",
+    "categories": [
+      "Web",
+      "Proxy"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "80/tcp",
+      "443/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Nginx"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Nginx Proxy Manager",
+    "name": "nginx-proxy-manager",
+    "description": "Nginx Proxy Manager enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/proxy_mgr.png",
+    "image": "jlesage/nginx-proxy-manager",
+    "categories": [
+      "Proxy",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "80:8080/tcp",
+      "81:8181/tcp",
+      "443:4443/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Nginx-Proxy"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "NZBGet",
+    "name": "nzbget",
+    "description": "NZBGet is a usenet downloader, written in C++ and designed with performance in mind to achieve maximum download speed by using very little system resources. It supports all platforms including Windows, Mac, Linux and works on all devices including PC, NAS, WLAN routers and media players",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/nzbget-icon.png",
+    "image": "linuxserver/nzbget:latest",
+    "categories": [
+      "Downloaders"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "6789:6789/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Nzbget"
+      },
+      {
+        "container": "/downloads",
+        "bind": "/portainer/Downloads"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  },
+  {
+    "type": 1,
+    "title": "OpenVPN Access Server",
+    "name": "openvpn-as",
+    "description": "OpenVPN Access Server is a full featured secure network tunneling VPN software solution that integrates OpenVPN server capabilities, enterprise management capabilities, simplified OpenVPN Connect UI, and OpenVPN Client software packages that accommodate Windows, MAC, Linux, Android, and iOS environments.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/openvpn-as-icon.png",
+    "image": "linuxserver/openvpn-as:latest",
+    "categories": [
+      "Other"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "943:943/tcp",
+      "9443:9443/tcp",
+      "1194:1194/udp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/OpenVPN-AS"
+      }
+    ],
+    "env": [
+      {
+        "name": "INTERFACE",
+        "label": "INTERFACE",
+        "set": "eth0"
+      },
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Code Server",
+    "name": "code-server",
+    "description": "Code-server is VS Code running on a remote server, accessible through the browser.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/code-server.png",
+    "image": "linuxserver/code-server:latest",
+    "categories": [
+      "Other",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "8443:8443/tcp"
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "GUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "TZ",
+        "label": "TZ"
+      },
+      {
+        "name": "PASSWORD",
+        "label": "PASSWORD"
+      },
+      {
+        "name": "SUDO_PASSWORD",
+        "label": "SUDO_PASSWORD"
+      },
+      {
+        "name": "PROXY_DOMAIN",
+        "label": "PROXY_DOMAIN",
+        "default": "example.my.domain"
+      }
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Code-Server"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Duck DNS",
+    "name": "duckdns",
+    "description": "Duck DNS is a free service which will point a DNS (sub domains of duckdns.org) to an IP of your choice. The service is completely free, and doesn't require reactivation or forum posts to maintain its existence.\r\n\r\nFirst, go to duckdns site, register your subdomain and retrieve your token\r\nThen run the docker create command above with your subdomain(s) and token\r\nIt will update your IP with the DuckDNS service every 5 minutes\r\n\r\n",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/duckdns.png",
+    "image": "linuxserver/duckdns:latest",
+    "categories": [
+      "DNS",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "env": [
+      {
+        "name": "SUBDOMAINS",
+        "label": "SUBDOMAINS",
+        "set": ""
+      },
+      {
+        "name": "TOKEN",
+        "label": "TOKEN",
+        "set": ""
+      },
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Duplicati",
+    "name": "duplicati",
+    "description": "Free backup software to store encrypted backups online, Duplicati works with standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive, Amazon Cloud Drive and S3, Google Drive, box.com, Mega, hubiC and many others.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/duplicati-icon.png",
+    "image": "linuxserver/duplicati:latest",
+    "categories": [
+      "Backup",
+      "Cloud",
+      "Other",
+      "Productivity",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "8200:8200/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Duplicati"
+      },
+      {
+        "container": "/tmp"
+      },
+      {
+        "container": "/backups"
+      },
+      {
+        "container": "/source"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Guacamole",
+    "name": "guacamole",
+    "description": "A clientless remote desktop gateway.",
+    "note": "The default login will be guacadmin/guacadmin. It is common practice to add a new admin user and remove the default user for Guacamole.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/guacamole.png",
+    "image": "oznu/guacamole:latest",
+    "categories": [
+      "Other",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "8080:8080/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Guacamole"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Pi-Hole",
+    "name": "pihole",
+    "description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/pihole.png",
+    "image": "pihole/pihole:latest",
+    "categories": [
+      "Other",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "53:53/tcp",
+      "53:53/udp",
+      "67:67/udp",
+      "1010:80/tcp",
+      "4443:443/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/etc/pihole",
+        "bind": "/portainer/Files/AppData/Config/PiHole"
+      },
+      {
+        "container": "/etc/dnsmasq.d",
+        "bind": "/portainer/Files/AppData/Config/PiHole/DNS"
+      }
+    ],
+    "note": "When the installation is complete, navigate to your.ip.goes.here:1010/admin. Follow the article <a href='https://medium.com/@niktrix/getting-rid-of-systemd-resolved-consuming-port-53-605f0234f32f'>here</a> if you run into issues binding to port 53."
+  },
+  {
+    "type": 1,
+    "title": "ProjectSend",
+    "name": "projectsend",
+    "description": "ProjectSend is a self-hosted application that lets you upload files and assign them to specific clients that you create yourself! Secure, private and easy. No more depending on external services or e-mail to send those files!\n  ",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/projectsend-logo.png",
+    "image": "linuxserver/projectsend:latest",
+    "categories": [
+      "Cloud",
+      "Productivity",
+      "Tools",
+      "Other"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "80/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/data",
+        "bind": "/portainer/Files/AppData/ProjectSend"
+      },
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/ProjectSend"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "Pydio",
+    "name": "pydio",
+    "description": "Pydio (formerly AjaXplorer) is a mature open source software solution for file sharing and synchronization. With intuitive user interfaces (web / mobile / desktop), Pydio provides enterprise-grade features to gain back control and privacy of your data: user directory connectors, legacy filesystems drivers, comprehensive admin interface, and much more.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/pydio-icon.png",
+    "image": "linuxserver/pydio:latest",
+    "categories": [
+      "Cloud",
+      "Other"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "443/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Pydio"
+      },
+      {
+        "container": "/data",
+        "bind": "/portainer/Files/AppData/Pydio"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "SyncThing",
+    "name": "syncthing",
+    "description": null,
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/syncthing-icon.png",
+    "image": "linuxserver/syncthing:latest",
+    "categories": [
+      "Backup",
+      "Cloud",
+      "Other",
+      "Tools"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "8384:8384/tcp",
+      "21027:21027/udp",
+      "22000:22000/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/config",
+        "bind": "/portainer/Files/AppData/Config/Syncthing"
+      },
+      {
+        "container": "/sync"
+      }
+    ],
+    "env": [
+      {
+        "name": "PUID",
+        "label": "PUID",
+        "default": "1000"
+      },
+      {
+        "name": "PGID",
+        "label": "PGID",
+        "default": "100"
+      }
+    ]
+  },
+  {
+    "type": 1,
+    "title": "YouTubeDL-Material",
+    "name": "youtubedl-material",
+    "description": "YoutubeDL-Material is a Material Design frontend for youtube-dl. It's coded using Angular 9 for the frontend, and Node.js on the backend.",
+    "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/ytdlm.png",
+    "image": "tzahi12345/youtubedl-material:latest",
+    "categories": [
+      "Other",
+      "Downloaders"
+    ],
+    "platform": "linux",
+    "restart_policy": "unless-stopped",
+    "ports": [
+      "17442:17442/tcp"
+    ],
+    "volumes": [
+      {
+        "container": "/app/appdata",
+        "bind": "/portainer/Files/AppData/Config/YTDLM"
+      },
+      {
+        "container": "/app/video",
+        "bind": "/portainer/Files/AppData/Youtube/Video"
+      },
+      {
+        "container": "/app/subscriptions",
+        "bind": "/portainer/Files/AppData/Youtube/Subscriptions"
+      },
+      {
+        "container": "/app/users",
+        "bind": "/portainer/Files/AppData/Youtube/Users"
+      },
+      {
+        "container": "/app/audio",
+        "bind": "/portainer/Files/AppData/Youtube/Audio"
+      }
+    ]
+  }
+]
