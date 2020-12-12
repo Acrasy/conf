@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#xrandr for old vga display and t420
+
 IN="eDP-1"
 EXT="DP-2"
 
