@@ -23,5 +23,24 @@
 	"latex-workshop.view.pdf.viewer": "tab",
 	"git.enableSmartCommit": true,
 	"editor.renderControlCharacters": true,
-	"[markdown]": {"files.trimTrailingWhitespace": false}
-	}
+	"[markdown]": {
+		"files.trimTrailingWhitespace": false
+		},
+	"markdown-pdf.headerTemplate": "<div style=\"font-size: 9px; margin-left: 1cm;\"> <span class='string'>Acrasy</span></div>",
+	"git.confirmSync": false,
+	"latex-utilities.formattedPaste.image.template": [
+    "\\begin{figure}[!htb]",
+    "\t\\centering",
+    "\t\\includegraphics[$1]{${imageFilePath}}",
+    "\t\\caption{${imageFileNameWithoutExt/[-]/ /}}",
+    "\t\\label{fig:${imageFileNameWithoutExt}}",
+    "\\end{figure}",
+	""
+],
+"explorer.confirmDragAndDrop": false,
+"workbench.startupEditor": "newUntitledFile",
+"python.pythonPath": "/usr/bin/python3",
+"python.linting.pylintPath": "/usr/bin/pylint3",
+"python.analysis.memory.keepLibraryAst": true,
+"python.analysis.memory.keepLibraryLocalVariables": true,
+"latex-workshop.message.update.show": false
