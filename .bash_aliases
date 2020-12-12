@@ -12,4 +12,5 @@ alias battery='acpi -b | grep Battery'
 alias setBrightness='cd /sys/class/backlight/intel_backlight'
 alias off='shutdown -h now'
 
-alias youtube-dl --extract-audio --audio-format mp3 = 'ytdl-audio'
+alias ytdl-audio = 'youtube-dl -i --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" '<linktosong>' '
+alias ytdl-playlist = ' youtube-dl -i --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" --yes-playlist '<linktoplaylist>' '
