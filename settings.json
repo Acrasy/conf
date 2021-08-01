@@ -1,41 +1,41 @@
-	{
-	"workbench.settings.editor": "json",
-	"terminal.explorerKind": "external",
-	"terminal.external.linuxExec": "zsh",
-	"workbench.colorTheme": "One Dark Pro",
-	"telemetry.enableCrashReporter": false,
-	"telemetry.enableTelemetry": false,
-	"editor.accessibilitySupport": "off",
-	"editor.autoClosingBrackets": "never",
-	"editor.autoClosingOvertype": "never",
-	"editor.autoClosingQuotes": "never",
-	"files.trimTrailingWhitespace": true,
-	"files.trimFinalNewlines": true,
-	"workbench.enableExperiments": false,
-	"editor.insertSpaces": false,
-	"editor.autoSurround": "never",
-	"git.scanRepositories": ["/home/$USER/DATA/gitRepos"],
-	"git.autofetch": true,
-	"editor.acceptSuggestionOnEnter": "off",
-	"editor.renderWhitespace": "all",
-	"editor.detectIndentation": false,
-	"explorer.confirmDelete": false,
-	"latex-workshop.view.pdf.viewer": "tab",
-	"git.enableSmartCommit": true,
-	"editor.renderControlCharacters": true,
-	"[markdown]": {
-		"files.trimTrailingWhitespace": false
-		},
-	"markdown-pdf.headerTemplate": "<div style=\"font-size: 9px; margin-left: 1cm;\"> <span class='string'>Acrasy</span></div>",
-	"git.confirmSync": false,
-	"latex-utilities.formattedPaste.image.template": [
-    "\\begin{figure}[!htb]",
-    "\t\\centering",
-    "\t\\includegraphics[$1]{${imageFilePath}}",
-    "\t\\caption{${imageFileNameWithoutExt/[-]/ /}}",
-    "\t\\label{fig:${imageFileNameWithoutExt}}",
-    "\\end{figure}",
-	""
+{
+
+"workbench.settings.editor": "json",
+"terminal.explorerKind": "external",
+"terminal.external.linuxExec": "zsh",
+"telemetry.enableCrashReporter": false,
+"telemetry.enableTelemetry": false,
+"editor.accessibilitySupport": "off",
+"editor.autoClosingBrackets": "never",
+"editor.autoClosingOvertype": "never",
+"editor.autoClosingQuotes": "never",
+"files.trimTrailingWhitespace": true,
+"files.trimFinalNewlines": true,
+"workbench.enableExperiments": false,
+"editor.insertSpaces": false,
+"editor.autoSurround": "never",
+"git.scanRepositories": ["/home/$USER/DATA/gitRepos"],
+"git.autofetch": true,
+"editor.acceptSuggestionOnEnter": "off",
+"editor.renderWhitespace": "all",
+"editor.detectIndentation": false,
+"explorer.confirmDelete": false,
+"latex-workshop.view.pdf.viewer": "tab",
+"git.enableSmartCommit": true,
+"editor.renderControlCharacters": true,
+"[markdown]": {
+    "files.trimTrailingWhitespace": false
+    },
+"markdown-pdf.headerTemplate": "<div style=\"font-size: 9px; margin-left: 1cm;\"> <span class='string'>Acrasy</span></div>",
+"git.confirmSync": false,
+"latex-utilities.formattedPaste.image.template": [
+"\\begin{figure}[!htb]",
+"\t\\centering",
+"\t\\includegraphics[$1]{${imageFilePath}}",
+"\t\\caption{${imageFileNameWithoutExt/[-]/ /}}",
+"\t\\label{fig:${imageFileNameWithoutExt}}",
+"\\end{figure}",
+""
 ],
 "explorer.confirmDragAndDrop": false,
 "workbench.startupEditor": "newUntitledFile",
@@ -43,4 +43,58 @@
 "python.linting.pylintPath": "/usr/bin/pylint3",
 "python.analysis.memory.keepLibraryAst": true,
 "python.analysis.memory.keepLibraryLocalVariables": true,
-"latex-workshop.message.update.show": false
+"latex-workshop.message.update.show": false,
+"json.maxItemsComputed": 10000,
+"workbench.editor.untitled.hint": "hidden",
+"editor.tabSize": 8,
+"editor.cursorStyle": "line",
+"editor.lineNumbers": "on",
+"editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+"editor.wordWrap": "on",
+
+
+"latex-workshop.latex.tools": [
+    {
+        "name": "xelatex",
+        "command": "xelatex",
+        "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
+        ]
+    },
+    {
+        "name": "biber",
+        "command": "biber",
+        "args": [
+            "%DOCFILE%"
+        ]
+    }
+],
+"latex-workshop.latex.recipes": [
+    {
+        "name": "xelatex -> biber -> xelatex*2",
+        "tools": [
+            "xelatex",
+            "biber",
+            "xelatex",
+	    "biber",
+            "xelatex",
+	    "xelatex"
+        ]
+    }
+
+],
+"cSpell.diagnosticLevel": "Hint",
+"workbench.colorCustomizations": {
+
+  // will change the color of three dots to red
+  "editorHint.foreground": "#f000",
+
+  // will underline the entire word with dots in your chosen color
+  "editorHint.border": "#ff0000"
+},
+"latex-workshop.message.badbox.show":false
+
+}
